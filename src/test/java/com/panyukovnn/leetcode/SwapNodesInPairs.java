@@ -1,5 +1,6 @@
 package com.panyukovnn.leetcode;
 
+import com.panyukovnn.leetcode.model.ListNode;
 import org.junit.Test;
 
 public class SwapNodesInPairs {
