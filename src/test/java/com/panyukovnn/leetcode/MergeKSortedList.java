@@ -1,10 +1,13 @@
 package com.panyukovnn.leetcode;
 
 import com.panyukovnn.leetcode.model.ListNode;
+import com.panyukovnn.leetcode.util.Util;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class MergeKSortedList {
 
@@ -31,14 +34,15 @@ public class MergeKSortedList {
         lists[1] = n21;
         lists[2] = n31;
 
-        printList(mergeKLists(lists));
+//        Util.printListNode(mergeKLists(lists));
+        Util.printListNode(mergeKListsFaster(lists));
     }
 
     /*
-            Шаг 1. Как только все текущие ноды равны null - возвращаем результат
-            Шаг 2. Пробегаем по всем нодам, сравниваем текущие значения с переменной, находим наименьшее значение и запоминаем какая была нода
-            Шаг 3. Добавляем ноду с наименьшим значением в результирующий список, при этом храним ссылку на голову
-         */
+        Шаг 1. Как только все текущие ноды равны null - возвращаем результат
+        Шаг 2. Пробегаем по всем нодам, сравниваем текущие значения с переменной, находим наименьшее значение и запоминаем какая была нода
+        Шаг 3. Добавляем ноду с наименьшим значением в результирующий список, при этом храним ссылку на голову
+     */
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode resultHead = null;
         ListNode resultList = null;
@@ -76,17 +80,24 @@ public class MergeKSortedList {
         return resultHead;
     }
 
-    private void printList(ListNode node) {
-        while (node != null) {
-            System.out.print(node.val);
+    public ListNode mergeKListsFaster(ListNode[] lists) {
+        Queue<Integer> queue = new PriorityQueue<>();
 
-            if (node.next != null) {
-                System.out.print(" -> ");
+        for (ListNode head : lists) {
+            while (head != null) {
+                queue.add(head.val);
+                head = head.next;
             }
-
-            node = node.next;
         }
 
-        System.out.print("\n");
+        ListNode temp = new ListNode(-1);
+        ListNode head = temp;
+        while (!queue.isEmpty()) {
+            head.next = new ListNode(queue.poll());
+            head = head.next;
+        }
+
+        return temp.next;
     }
+
 }

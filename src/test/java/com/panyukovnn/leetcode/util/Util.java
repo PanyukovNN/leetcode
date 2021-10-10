@@ -1,5 +1,7 @@
 package com.panyukovnn.leetcode.util;
 
+import com.panyukovnn.leetcode.model.ListNode;
+
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,5 +23,19 @@ public class Util {
         String result = IntStream.of(array).boxed().map(String::valueOf).collect(Collectors.joining(", "));
 
         System.out.println(result);
+    }
+
+    public static void printListNode(ListNode node) {
+        while (node != null) {
+            System.out.print(node.val);
+
+            if (node.next != null) {
+                System.out.print(" -> ");
+            }
+
+            node = node.next;
+        }
+
+        System.out.print("\n");
     }
 }
