@@ -26,7 +26,7 @@ public class MergeTwoSortedArrays {
 
         int[] result = new int[arr1.length + arr2.length];
 
-        while (index1 != arr1.length || index2 != arr2.length) {
+        while (index1 < arr1.length || index2 < arr2.length) {
             if (index1 == arr1.length || (index2 != arr2.length && arr1[index1] > arr2[index2])) {
                 if (addElement(result, arr2[index2++], resultIndex)) {
                     resultIndex++;

@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TwoSum {
+public class _1_TwoSum {
 
     @Test
     public void test() {
